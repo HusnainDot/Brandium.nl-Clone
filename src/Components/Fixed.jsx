@@ -7,26 +7,82 @@ gsap.registerPlugin(SplitText);
 const Items = ["Work", "Agency", "Services", "Archive", "Insights", "Contact"];
 
 const Fixed = () => {
+  let textOneRefs = useRef([]);
+  let splitTextForOne = useRef([]);
 
-    let textOneRefs = useRef([])
-    console.log(textOneRefs);
-    
+  useEffect(() => {
+    textOneRefs.current.forEach((char, index) => {
+      if (char) {
+        splitTextForOne.current[index] = new SplitText(char, { type: "chars" });
+      }
+    });
+  }, []);
+
+  let handelMouseEnterOne = (i) => {
+    let split = splitTextForOne.current[i];
+
+    if (!split) return;
+    gsap.to(
+      split.chars,
+      {
+        y: -40,
+        opacity: 0,
+        stagger: 0.05,
+        ease: "power4.out",
+        duration: 1,
+      }
+    );
+  };
 
 
+  let handelMouseLeaveOne = (i) => {
+    let split = splitTextForOne.current[i];
+
+    if (!split) return;
+    gsap.to(split.chars, {
+      y: 0,
+      opacity: 1,
+      stagger: 0.05,
+      ease: "power4.out",
+      duration: 1,
+    });
+
+  }
 
   return (
     <div className="w-full bg-black dark:bg-white relative">
       <div className="fixed top-10 right-10">
         <div className="flex flex-col gap-1.5">
           {Items.map((obj, index) => (
-            <div key={index} className="flex items-center gap-2.5">
-              <span className="h-[4px] w-[4px] opacity-0 scale-0 rounded-full bg-[#747474] p-1 block"></span>
-              <h3
-                ref={(el) => (textOneRefs.current[index] = el)}
-                className="text-2xl capitalize bg-gradient-to-t from-[#D3D7DB] to-[#222222] bg-clip-text "
+            <div>
+              <div
+                key={index}
+                className="flex items-center overflow-hidden gap-2.5"
               >
-                {obj}
-              </h3>
+                <span className="h-[4px] w-[4px] opacity-0 scale-0 rounded-full bg-[#747474] p-1 block"></span>
+                <h3
+                  ref={(el) => (textOneRefs.current[index] = el)}
+                  onMouseEnter={() => handelMouseEnterOne(index)}
+                  onMouseLeave={() => handelMouseLeaveOne(index)}
+                  className="text-2xl capitalize bg-gradient-to-t from-[#D3D7DB] to-[#222222] bg-clip-text "
+                >
+                  {obj}
+                </h3>
+              </div>
+              <div
+                key={index}
+                className="flex items-center overflow-hidden gap-2.5"
+              >
+                <span className="h-[4px] w-[4px] opacity-0 scale-0 rounded-full bg-[#747474] p-1 block"></span>
+                <h3
+                  // ref={(el) => (textTwoeRefs.current[index] = el)}
+                  // onMouseEnter={() => handelMouseEntertwo(index)}
+                  // onMouseLeave={() => handelMouseLeavetwo(index)}
+                  className="text-2xl capitalize bg-gradient-to-t from-[#D3D7DB] to-[#222222] bg-clip-text "
+                >
+                  {obj}
+                </h3>
+              </div>
             </div>
           ))}
         </div>
