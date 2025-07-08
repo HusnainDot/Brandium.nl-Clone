@@ -41,10 +41,10 @@ const MainSection = () => {
 
       <div className="relative z-20 pl-5 md:pl-10 pb-10 pt-[50%] md:pt-10">
         {heading.map((text, index) => (
-          <div key={index} className="relative overflow-hidden">
+          <div key={index} className="relative overflow-hidden h-fit">
             <h1
               ref={(el) => (textAnimationRef.current[index] = el)}
-              className="text-[17vw] font-medium text-transparent bg-clip-text bg-cover bg-center leading-15 md:leading-75 "
+              className="text-[18vw] font-medium text-transparent bg-clip-text bg-cover bg-center leading-[0.88em]  text-nowrap"
               style={{ backgroundImage: `url(${textTaxture})` }}
             >
               {text}
