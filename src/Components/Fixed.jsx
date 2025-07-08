@@ -55,8 +55,9 @@ const Fixed = ({ scrollPercent }) => {
       gsap.to(customCursor.current, {
         x: moveX - 8,
         y: movey - 8,
-        duration: 1,
+        duration: 0.5,
         ease: "power1.out",
+        opacity: 1,
       });
     };
 
@@ -126,10 +127,10 @@ const Fixed = ({ scrollPercent }) => {
   };
 
   return (
-    <div className="w-full bg-black dark:bg-white relative">
+    <div className="w-full bg-black dark:bg-white relative z-30">
       <div
         ref={customCursor}
-        className="fixed top-0 left-0 w-[14px] h-[14px] bg-[#D9FF06] rounded-full"
+        className="fixed top-0 left-0 w-[14px] h-[14px] bg-[#D9FF06] rounded-full opacity-0"
       ></div>
 
       <div className="fixed top-5 left-0 md:top-10 md:left-10  w-12 h-12  md:w-20 md:h-20  text-white dark:text-black">
@@ -339,7 +340,7 @@ const Fixed = ({ scrollPercent }) => {
             <FaArrowDownLong className="text-white absolute z-20 " size={25} />
             <div
               style={{ height: `${scrollPercent}%` }}
-              className={`absolute w-full bg-[#D9FF06] top-0 transition-all duration-100`}
+              className={`absolute w-full bg-[#c1dc2b] top-0 transition-all duration-100`}
             ></div>
           </div>
         </div>
