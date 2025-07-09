@@ -53,8 +53,8 @@ const Fixed = ({ scrollPercent }) => {
       let movey = e.clientY;
 
       gsap.to(customCursor.current, {
-        x: moveX - 8,
-        y: movey - 8,
+        x: moveX - 12,
+        y: movey - 12,
         duration: 0.5,
         ease: "power1.out",
         opacity: 1,
@@ -127,13 +127,13 @@ const Fixed = ({ scrollPercent }) => {
   };
 
   return (
-    <div className="w-full bg-black dark:bg-white relative z-30">
+    <div className="w-full bg-black dark:bg-white relative z-30 disabled:not-visited:">
       <div
         ref={customCursor}
-        className="fixed top-0 left-0 w-[14px] h-[14px] bg-[#D9FF06] rounded-full opacity-0"
+        className="fixed top-0 left-0 w-[14px] h-[14px] bg-[#D9FF06] rounded-full opacity-0 pointer-events-none"
       ></div>
 
-      <div className="fixed top-5 left-0 md:top-10 md:left-10  w-12 h-12  md:w-20 md:h-20  text-white dark:text-black">
+      <div className="fixed top-5 left-0 md:top-10 md:left-10  w-12 h-12  md:w-20 md:h-20  text-[#676767]">
         <svg
           viewBox="0 0 3000 3000"
           xmlns="http://www.w3.org/2000/svg"
@@ -277,7 +277,7 @@ const Fixed = ({ scrollPercent }) => {
                   ref={(el) => (textOneRefs.current[index] = el)}
                   onMouseEnter={() => handelMouseEnterOne(index)}
                   onMouseLeave={() => handelMouseLeaveOne(index)}
-                  className="text-2xl capitalize bg-gradient-to-t from-[#D3D7DB] to-[#222222] bg-clip-text  py-1 cursor-pointer "
+                  className="text-2xl capitalize text-[#676767] bg-clip-text  py-1 cursor-pointer "
                 >
                   {obj}
                 </h3>
@@ -289,7 +289,7 @@ const Fixed = ({ scrollPercent }) => {
                 ></span>
                 <h3
                   ref={(el) => (textTwoeRefs.current[index] = el)}
-                  className="text-2xl capitalize bg-gradient-to-t from-[#D3D7DB] to-[#222222] bg-clip-text py-1  cursor-pointer "
+                  className="text-2xl capitalize text-[#676767] bg-clip-text py-1  cursor-pointer "
                 >
                   {obj}
                 </h3>
@@ -304,7 +304,7 @@ const Fixed = ({ scrollPercent }) => {
       </div>
 
       <div className="fixed bottom-5 left-10 hidden md:block ">
-        <h3 className="-rotate-90 origin-left text-2xl font-semibold email text-center">
+        <h3 className="-rotate-90 origin-left text-2xl font-semibold email text-center  text-[#676767]">
           hello@brandium.nl
         </h3>
       </div>
@@ -322,7 +322,12 @@ const Fixed = ({ scrollPercent }) => {
                 d="M 125, 125 m -75, 0 a 75,75 0 1,1 150,0 a 75,75 0 1,1 -150,0"
               />
             </defs>
-            <text fill="black" fontSize="16.044303797468352" textLength="470">
+            <text
+              fill="black"
+              fontSize="16.044303797468352"
+              textLength="470"
+              className="fill-[#676767]"
+            >
               <textPath
                 startOffset="0"
                 xlinkHref="#circlePath"

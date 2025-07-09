@@ -22,6 +22,7 @@ const MainSection = () => {
       { y: 200, opacity: 0 },
       {
         y: 0,
+        delay:1,
         opacity: 1,
         duration: 1.5,
         stagger: 0.2,
@@ -36,19 +37,21 @@ const MainSection = () => {
       <img
         src={bgimage}
         alt=""
-        className="absolute top-[-20%] object-cover z-0  min-h-[150%]  min-w-[150%]  md:min-w-auto md:min-h-auto"
+        className="   min-h-[150%]  min-w-[150%]  md:min-w-auto md:min-h-auto  "
       />
 
-      <div className="relative z-20 pl-5 md:pl-10 pb-10 pt-[50%] md:pt-10">
+      <div className="absolute z-20 top-[25%] md:top-10 left-5 md:left-10">
         {heading.map((text, index) => (
-          <div key={index} className="relative overflow-hidden h-fit">
-            <h1
-              ref={(el) => (textAnimationRef.current[index] = el)}
-              className="text-[18vw] font-medium text-transparent bg-clip-text bg-cover bg-center leading-[0.88em]  text-nowrap"
-              style={{ backgroundImage: `url(${textTaxture})` }}
-            >
-              {text}
-            </h1>
+          <div key={index}>
+            <div className="relative overflow-hidden h-fit">
+              <h1
+                ref={(el) => (textAnimationRef.current[index] = el)}
+                className="text-[16vw] font-medium text-transparent bg-clip-text bg-cover bg-center leading-[0.88em]  text-nowrap"
+                style={{ backgroundImage: `url(${textTaxture})` }}
+              >
+                {text}
+              </h1>
+            </div>
           </div>
         ))}
       </div>
