@@ -135,8 +135,7 @@ const OurWork = () => {
             trigger: headingRef.current[1],
             start: "top 99%",
             end :"top 40%",
-            markers: true,
-            scrub:true,
+            
           },
         }
       );
