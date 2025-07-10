@@ -130,7 +130,7 @@ const Fixed = ({ scrollPercent }) => {
     <div className="w-full bg-black dark:bg-white relative z-30 disabled:not-visited:">
       <div
         ref={customCursor}
-        className="fixed top-0 left-0 w-[14px] h-[14px] bg-[#D9FF06] rounded-full opacity-0 pointer-events-none"
+        className="fixed top-0 left-0 w-[14px] h-[14px] bg-[#D9FF06] rounded-full opacity-0 pointer-events-none scale-0 md:scale-1"
       ></div>
 
       <div className="fixed top-5 left-0 md:top-10 md:left-10  w-12 h-12  md:w-20 md:h-20  text-[#676767]">

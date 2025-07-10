@@ -22,7 +22,7 @@ const MainSection = () => {
       { y: 200, opacity: 0 },
       {
         y: 0,
-        delay:1,
+        delay:0.3,
         opacity: 1,
         duration: 1.5,
         stagger: 0.2,
@@ -40,7 +40,7 @@ const MainSection = () => {
         className="   min-h-[150%]  min-w-[150%]  md:min-w-auto md:min-h-auto  "
       />
 
-      <div className="absolute z-20 top-[25%] md:top-10 left-5 md:left-10">
+      <div className="absolute z-20 top-[50%] md:top-10 left-5 md:left-10">
         {heading.map((text, index) => (
           <div key={index}>
             <div className="relative overflow-hidden h-fit">

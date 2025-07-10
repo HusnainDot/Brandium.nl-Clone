@@ -1,12 +1,16 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import { GrLinkNext } from "react-icons/gr";
 import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutUsSection = () => {
   const readyArrow = useRef();
   const readyBg = useRef();
   const lineRef = useRef();
   const linePathRef = useRef();
+  const aboutTextRef = useRef();
+
   const [lineWidth, setLineWidth] = useState(0);
   let LineFinalPath = `M 0 150 Q 750 150 ${lineWidth} 150`;
   const readyMouseEnter = () => {
@@ -20,9 +24,10 @@ const AboutUsSection = () => {
       readyArrow.current,
       {
         scale: 1,
-        x: -10,
-        y: 10,
+        x: -20,
+        y: 20,
         opacity: 1,
+        delay: 0.8,
       },
       {
         x: 10,
@@ -52,7 +57,6 @@ const AboutUsSection = () => {
     const moveY = e.clientY - bounds.top;
 
     let fromY = (moveY / bounds.height) * 500 - 150;
-    console.log(`from y ${fromY} and from x ${moveX}`);
 
     gsap.to(linePathRef.current, {
       attr: {
@@ -74,22 +78,47 @@ const AboutUsSection = () => {
     if (lineRef.current) {
       setLineWidth(lineRef.current.offsetWidth);
     }
+
+    
+    gsap.fromTo(
+      aboutTextRef.current,
+      {
+        y: 100,
+        opacity: 0,
+      },
+      {
+        duration: 1,
+        y: 0,
+        opacity: 1,
+        ease: "power1.out",
+        scrollTrigger: {
+          trigger: aboutTextRef.current,
+          start: "top 60%",
+     
+        },
+      }
+    );
+
+  
   }, []);
 
   return (
     <div className="w-full">
       <div>
-        <h3 className="text-lg text-[#D6FB06] pb-5 font-semibold">
+        <h3 className="text-lg text-[#D6FB06] pb-5 font-semibold ml-2.5 md:ml-0">
           What we do
         </h3>
 
-        <p className="text-white max-w-[80%] text-[4em] leading-tight pb-10 ml-2.5">
+        <p
+          ref={aboutTextRef}
+          className="text-white  md:max-w-[80%] text-3xl md:text-[4em] leading-tight pb-10 ml-2.5"
+        >
           At Brandium® we craft strong brand identities, visually striking
           website designs, and impactful marketing campaigns that go beyond the
           ordinary. We transform your business into a digital powerhouse.
         </p>
 
-        <div className="flex items-center py-3 w-fit px-4 gap-2.5 bg-white rounded-full mb-10 ml-2.5 cursor-pointer relative">
+        <div className="flex items-center py-3 w-fit px-4 gap-2.5 bg-white rounded-full md:mb-10 ml-2.5 cursor-pointer relative">
           <div
             onMouseEnter={readyMouseEnter}
             onMouseLeave={readyMouseLeave}
@@ -122,7 +151,7 @@ const AboutUsSection = () => {
               d={`M 0 150 Q 750 150 ${lineWidth} 150`}
               stroke="white"
               fill="none"
-              strokeWidth="2"
+              strokeWidth="3"
             />
           </svg>
         </div>
