@@ -5,6 +5,10 @@ import Producttwo from "../../public/producttwo.mp4";
 import Productthree from "../../public/productThree.webp";
 import Productfour from "../../public/productFoure.jpg";
 import { gsap } from "gsap";
+import AnimateButton from "./AnimateButton";
+import Line from "./Line";
+import HeadingText from "./HeadingText";
+import PText from "./PText";
 gsap.registerPlugin(ScrollTrigger);
 
 const OurWorkItems = [
@@ -44,7 +48,6 @@ const OurWork = () => {
   const productItemsRef = useRef([]);
   const videoRef = useRef([]);
   const imageRef = useRef([]);
-  const headingRef = useRef([]);
 
   const productMouseMove = (index, e) => {
     const el = CustomCursor.current[index];
@@ -117,50 +120,12 @@ const OurWork = () => {
         });
       }
     });
-
-    headingRef.current.forEach((char, index) => {
-      gsap.fromTo(
-        char,
-        {
-          y: 100,
-          opacity: 0,
-        },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 0.5,
-          delay: index * 0.4,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: headingRef.current[1],
-            start: "top 99%",
-            end :"top 40%",
-            
-          },
-        }
-      );
-    });
   }, []);
 
   return (
     <div className="w-full">
-      <div>
-        <h2 className="text-center text-white leading-[0.9] uppercase text-[10vw] font-semibold over">
-          <span
-            ref={(el) => (headingRef.current[0] = el)}
-            className="block "
-          >
-            featured
-          </span>
-        </h2>
-        <h2 className="text-center text-white leading-[0.9] uppercase text-[10vw] font-semibold overflow-hidden ">
-          <span
-            ref={(el) => (headingRef.current[1] = el)}
-            className="block "
-          >
-            work
-          </span>
-        </h2>
+      <div className="text-white flex">
+        <HeadingText headingOne={"FEATURED"} headingTwo={"WORK"} />
       </div>
 
       <div className=" py-10 md:py-28 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32">
@@ -216,6 +181,28 @@ const OurWork = () => {
             </div>
           );
         })}
+      </div>
+
+      <div className="">
+        <div className="flex  flex-col md:flex-row items-start justify-between gap-7">
+          <div className=" md:max-w-[60%]">
+            <PText
+              text={
+                "At Brandium® we craft strong brand identities, visually striking website designs, and impactful marketing campaigns that go beyond    the ordinary. We transform your business into a digital powerhouse."
+              }
+              classes={
+                "text-white text-lg md:text-3xl  leading-tight md:pb-10 ml-2.5"
+              }
+            />
+          </div>
+
+          <div className="flex items-center  py-3 w-fit px-4 gap-2.5 bg-white rounded-full md:mt-5  cursor-pointer relative ">
+            <AnimateButton title={"View more projects"} />
+          </div>
+        </div>
+        <div>
+          <Line />
+        </div>
       </div>
     </div>
   );
